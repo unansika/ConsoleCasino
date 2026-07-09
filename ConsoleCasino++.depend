@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1783628160 source:/home/xhreece/Documents/cpp/ConsoleCasino++/main.cpp
+	<iostream>
+	<list>
+	<vector>
+	<iterator>
+	<cstdlib>
+	<ctime>
+	<typeinfo>
+
