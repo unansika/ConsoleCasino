@@ -108,29 +108,92 @@ void blackjack()
     card_deck.erase(it);
     cards_in_deck--;
 
-    cout << "dealers face up card: " << dealer_faceup << "\n";
+    cout << "dealer's face up card: " << dealer_faceup << "\n";
     cout << "your cards:\n";
-    cout << players_cards[0] << "\n"; //test cases
+    cout << players_cards[0] << "\n";
     cout << players_cards[1] << "\n";
-    cout << "your score: " << blackjack_hand_calc(players_cards) << "\n";
-    cout << "computer score: " << blackjack_hand_calc(dealer_cards) << "\n";
-    cout << dealer_facedown << "\n";
 
+    size_t index_in_players_hand {1};
     //gameplay loop
-    while(blackjack_hand_calc(player_cards) >= 21)
+    while(true)
     {
-        //ask to stand or draw
-        //if stand break out of this
-        //if hit add card
-        //if over run lose and reveal dealers cards
+        string choice {};
+        cout << "would you like to stand?(y/n)\n";
+
+        cin >> choice;
+
+        if(choice == "y") break;
+        else if(choice == "n")
+        {
+            index_in_players_hand++;
+
+            random_card = rand() % cards_in_deck;
+            it = card_deck.begin();
+            advance(it, random_card);
+
+            cards_drawn.push_back(*it); //draw players card
+            players_cards.push_back(*it);
+            card_deck.erase(it);
+            cards_in_deck--;
+
+            cout << "you draw: " << players_cards[index_in_players_hand] << "\n";
+
+            if(blackjack_hand_calc(players_cards) > 21)
+            {
+                cout << "bust! " << "dealer's face down card is: " << dealer_facedown << "\n";
+                return;
+            }
+        }
+        else
+        {
+            cout << "error please enter 'y' or 'n'\n";
+            continue;
+        }
     }
 
-    //dealer draw algo and reveal
+    int player_score = blackjack_hand_calc(players_cards);
+    int dealer_score = blackjack_hand_calc(dealer_cards);
 
-    //calculate winner
+    cout << "dealer's face down card is: " << dealer_facedown << "\n";
 
-    //based on that winnings or losses which will be returned
-    //return goes back to menu still need to sort out that loop
+    size_t index_in_dealers_hand {1};
+
+    while(dealer_score < 17)
+    {
+        index_in_dealers_hand++;
+
+        random_card = rand() % cards_in_deck;
+        it = card_deck.begin();
+        advance(it, random_card);
+
+        cards_drawn.push_back(*it); //draw dealers additional cards
+        dealer_cards.push_back(*it); //dealer stands on soft 17
+        card_deck.erase(it);
+        cards_in_deck--;
+
+        cout << "dealer draws: " << players_cards[index_in_dealers_hand] << "\n";
+
+        dealer_score = blackjack_hand_calc(dealer_cards);
+    }
+
+    if(dealer_score < player_score)
+    {
+        cout << "you win!";
+        //cash stuff
+        return; //return money
+    }
+    if(dealer_score > player_score)
+    {
+        cout << "you lose!";
+        //cash stuff
+        return;
+    }
+    else
+    {
+        cout << "you draw!";
+        //cash stuff
+        return;
+    }
 }
 
 int main()
