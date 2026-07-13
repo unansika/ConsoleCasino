@@ -17,7 +17,7 @@ int main()
     //completed:
     //blackjack();
     //guess_number();
-    //card_walk();
+    card_walk();
     return 0;
 
     //more games

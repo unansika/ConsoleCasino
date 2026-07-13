@@ -12,13 +12,11 @@
 
 using namespace std;
 
-//error with clubs right now
-
 string red_or_black(string card)
 {
-    if(card[card.size()-1] == 'e') return "b";
-    else if(card[card.size()-1] == 'b') return "b";
-    else return "r";
+    char suit = card[card.size()-2];
+    if(suit == 'd' || suit == 't') return "r";
+    else return "b";
 }
 
 void card_walk()
@@ -35,21 +33,17 @@ void card_walk()
                               "Ace of Hearts","2 of Hearts","3 of Hearts","4 of Hearts","5 of Hearts","6 of Hearts",
                               "7 of Hearts","8 of Hearts","9 of Hearts","Ten of Hearts","Jack of Hearts","Queen of Hearts","King of Hearts"};
 
-    vector<string> cards_drawn;
-
     srand(time(0));
 
     cout << "CARDWALK\n";
 
-    string choice {};
     int no_of_cards {52};
     size_t counter {0};
-    choice = "";
 
     while(counter <= 2)
     {
         cout << "red or black('r' or 'b'):\n";
-        choice = "";
+        string choice {};
         while(true)
         {
             cin >> choice;
@@ -61,7 +55,6 @@ void card_walk()
         auto it = card_deck.begin();
         advance(it, random_card);
 
-        cards_drawn.push_back(*it); //draw card
         card_deck.erase(it);
 
         cout << "you draw:\n";
@@ -71,7 +64,6 @@ void card_walk()
         if(choice == red_or_black(*it)) cout << "correct!\n";
         else
         {
-
             cout << "you lose!\n";
             //lose stuff
             return;
