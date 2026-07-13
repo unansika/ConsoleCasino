@@ -1,6 +1,7 @@
 #include "blackjack.h"
 #include "guessnumber.h"
 #include "cardwalk.h"
+#include "roulette.h"
 
 int main()
 {
@@ -17,7 +18,8 @@ int main()
     //completed:
     //blackjack();
     //guess_number();
-    card_walk();
+    //card_walk();
+    roulette();
     return 0;
 
     //more games
