@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1783956191 source:/home/xhreece/Documents/cpp/ConsoleCasino++/main.cpp
+1783971998 source:/home/xhreece/Documents/cpp/ConsoleCasino++/main.cpp
 	"blackjack.h"
 	"guessnumber.h"
 	"cardwalk.h"
+	"roulette.h"
 
 1783886845 source:/home/xhreece/Documents/cpp/ConsoleCasino++/blackjack.cpp
 	<iostream>
@@ -36,7 +37,7 @@
 1783956848 /home/xhreece/Documents/cpp/ConsoleCasino++/cardwalk.h
 	<string>
 
-1783956695 source:/home/xhreece/Documents/cpp/ConsoleCasino++/cardwalk.cpp
+1783956919 source:/home/xhreece/Documents/cpp/ConsoleCasino++/cardwalk.cpp
 	<iostream>
 	<string>
 	<vector>
@@ -47,4 +48,7 @@
 	<thread>
 	<chrono>
 	"cardwalk.h"
+
+1783972065 /home/xhreece/Documents/cpp/ConsoleCasino++/roulette.h
+	<vector>
 

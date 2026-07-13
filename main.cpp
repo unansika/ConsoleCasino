@@ -19,7 +19,7 @@ int main()
     //blackjack();
     //guess_number();
     //card_walk();
-    roulette();
+    roulette(100);
     return 0;
 
     //more games
