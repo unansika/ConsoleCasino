@@ -32,6 +32,12 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="blackjack.cpp" />
+		<Unit filename="blackjack.h" />
+		<Unit filename="cardwalk.cpp" />
+		<Unit filename="cardwalk.h" />
+		<Unit filename="guessnumber.cpp" />
+		<Unit filename="guessnumber.h" />
 		<Unit filename="main.cpp" />
 		<Extensions />
 	</Project>
