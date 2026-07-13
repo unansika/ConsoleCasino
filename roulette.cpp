@@ -84,7 +84,7 @@ int straight_up_bet(vector<vector<int>> &bets, int cash)
     vector<int> bet;
     bet.push_back(input_number(0,36)); //input number that is bet on and add to bet vector
 
-    bet.push_back(35); //input payout multiplier into vector
+    bet.push_back(36); //input payout multiplier into vector
 
     int bet_amount = input_cash(cash); //get bet amount
 
@@ -100,7 +100,7 @@ int red_black_bet(vector<vector<int>> &bets, int cash)
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "red or black bet, pays 2 to 1"
+    cout << "red or black bet, pays 1 to 1"
     cout << "enter red or black 'r' or 'b'):\n";
 
     string choice {};
@@ -140,7 +140,7 @@ int even_odd_bet(vector<vector<int>> &bets, int cash)
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "even or odd bet, pays 2 to 1"
+    cout << "even or odd bet, pays 1 to 1"
     cout << "enter odd or even 'o' or 'e'):\n";
 
     string choice {};
@@ -175,9 +175,51 @@ int even_odd_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-void dozen_bet()
+int dozen_bet(vector<vector<int>> &bets, int cash)
 {
+    cout << "\033[2J\033[H"; //clears console
+    roulette_map();
 
+    cout << "dozen bet, pays 2 to 1"
+    cout << "enter '1' for 1st 12(1-12)\n";
+    cout << "enter '2' for 2nd 12(13-24)\n";
+    cout << "enter '3' for 3rd 12(25-36):\n";
+
+    string choice {};
+    while(true)
+    {
+        cin >> choice;
+        if(choice == "1" || choice == "2" || choice == "3") break;
+        else cout << "error please enter '1', '2' or '3':\n";
+    }
+
+    vector<int> bet;
+
+    if(choice == "1")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(), {1,2,3,4,5,6,7,8,9,10,11,12});
+    }
+    else if(choice == "2")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(), {13,14,15,16,17,18,19,20,21,22,23,24});
+    }
+    else if(choice == "3")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(), {25,26,27,28,29,30,31,32,33,34,35,36})
+    }
+
+    bet.push_back(3); //input payout multiplier into vector
+
+    int bet_amount = input_cash(cash); //get bet amount
+
+    bet.push_back(bet_amount); //add bet amount to vector
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount; //return cash after
 }
 
 void row_bet()
@@ -249,24 +291,33 @@ int roulette_initial_bets(vector<vector<int>> &bets, int cash)
                 break;
 
             case "3":
-                cash = even_odd_bet();
+                cash = even_odd_bet(bets,cash);
                 break;
 
             case "4":
-                dozen_bet();
+                cash = dozen_bet(bets,cash);
+                break;
+
             case "5":
+                //todo
 
             case "6":
+                //todo
 
             case "7":
+                //todo
 
             case "8":
+                //todo
 
             case "9":
+                //todo
 
             case "10":
+                //todo
 
             case "11":
+                //todo
 
             case "f":
                 return cash;
@@ -287,9 +338,6 @@ int roulette(int cash)
 
     srand(time(0));
     int rand_no = rand() % 37;
-
-
-
 
 
 }
