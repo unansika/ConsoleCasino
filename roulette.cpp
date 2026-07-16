@@ -262,6 +262,8 @@ int row_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+
 }
 
 int column_bet(vector<vector<int>> &bets, int cash)
@@ -327,6 +329,40 @@ int high_low_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+    cout << "high or low bet, pays 1 to 1";
+    cout << "enter high or low 'h' or 'l'):\n";
+
+    string choice {};
+    while(true)
+    {
+        cin >> choice;
+        if(choice == "h" || choice == "l") break;
+        else cout << "error please enter 'h' or 'l':\n";
+    }
+
+    vector<int> bet;
+
+    if(choice == "h")
+    {
+        bet.reserve(18);
+        bet.insert(bet.end(), {19,20,21,22,23,24,25,26,27,28,30,31,32,33,34,35,36});
+    }
+    else if(choice == "l")
+    {
+        bet.reserve(18);
+        bet.insert(bet.end(), {1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18});
+    }
+
+    bet.push_back(2); //input payout multiplier into vector
+
+    int bet_amount = input_cash(cash); //get bet amount
+
+    bet.push_back(bet_amount); //add bet amount to vector
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount; //return cash after
 }
 
 int split_bet(vector<vector<int>> &bets, int cash)
@@ -394,7 +430,8 @@ int roulette_initial_bets(vector<vector<int>> &bets, int cash)
                 //todo
 
             case 'h':
-                //todo
+                cash = high_low_bet(bets,cash);
+                break;
 
             case 'p':
                 //todo

@@ -39,6 +39,8 @@
 		<Unit filename="guessnumber.cpp" />
 		<Unit filename="guessnumber.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="roulette.cpp" />
+		<Unit filename="roulette.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
