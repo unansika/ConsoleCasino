@@ -7,12 +7,13 @@
 #include <chrono>
 
 #include "roulette.h"
+#include "inputcasino.h"
 
 using namespace std;
 
 void roulette_map()
 {
-    cout << "   ┌───────────────────────────────────┐\n";
+    /*cout << "   ┌───────────────────────────────────┐\n";
     cout << "   │\033[31m3\033[0m │6 │\033[31m9\033[0m │\033[31m12\033[0m│15│\033[31m18\033[0m│\033[31m21\033[0m│24│\033[31m27\033[0m│\033[31m30\033[0m│33│\033[31m36\033[0m│\n";
     cout << "┌──│──│──│──│──│──│──│──│──│──│──│──│──│\n";
     cout << "│\033[32m0\033[0m │2 │\033[31m5\033[0m │8 │11│\033[31m14\033[0m│17│20│\033[31m23\033[0m│26│29│\033[31m32\033[0m│35│\n";
@@ -22,54 +23,19 @@ void roulette_map()
     cout << "   │  \033[32m1st 12\033[0m   │  \033[32m2nd 12\033[0m   │  \033[32m3rd 12\033[0m   │\n";
     cout << "   └───────────────────────────────────┘\n";
     cout << "   │\033[32m1-18\033[0m │\033[32meven\033[0m │ \033[31mred\033[0m │black│ \033[32modd\033[0m │\033[32m19-36\033[0m│\n";
+    cout << "   └───────────────────────────────────┘\n";*/
+
+    cout << "   ┌───────────────────────────────────┐\n";
+    cout << "   │3 │6 │9 │12│15│18│21│24│27│30│33│36│\n";
+    cout << "┌──│──│──│──│──│──│──│──│──│──│──│──│──│\n";
+    cout << "│0 │2 │5 │8 │11│14│17│20│23│26│29│32│35│\n";
+    cout << "└──│──│──│──│──│──│──│──│──│──│──│──│──│\n";
+    cout << "   │1 │4 │7 │10│13│16│19│22│25│28│31│34│\n";
     cout << "   └───────────────────────────────────┘\n";
-}
-
-int input_cash(int cash)
-{
-    roulette_map();
-
-    string line;
-    int bet_amount;
-    cout << "enter bet amount " << "max-" << cash << ":\n";
-
-    while(getline(cin, line)) //getting bet amount as int
-    {
-        stringstream stream_input(line);
-        if(stream_input >> bet_amount)
-        {
-            if(stream_input.eof())
-            {
-                if(bet_amount >= 0 && bet_amount <= cash) break;
-            }
-        }
-
-        cout << "\n" << "error please enter number (0-36):\n";
-    }
-
-    return bet_amount;
-}
-
-int input_number(int minimum, int maximum)
-{
-    string line;
-    int input;
-
-    while(getline(cin, line)) //getting input as int
-    {
-        stringstream stream_input(line);
-        if(stream_input >> input)
-        {
-            if(stream_input.eof())
-            {
-                if(input >= minimum && input <= maximum) break;
-            }
-        }
-
-        cout << "error please enter number (" << minimum << "-" << maximum << "):\n";
-    }
-
-    return input;
+    cout << "   │   1st 12  │  2nd 12   │  3rd 12   │\n";
+    cout << "   └───────────────────────────────────┘\n";
+    cout << "   │1-18 │even │ red │black│ odd │19-36│\n";
+    cout << "   └───────────────────────────────────┘\n";
 }
 
 int straight_up_bet(vector<vector<int>> &bets, int cash)

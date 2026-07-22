@@ -7,8 +7,10 @@
 #include <thread>
 #include <string>
 #include <random>
+#include <sstream>
 
 #include "blackjack.h"
+#include "inputcasino.h"
 
 using namespace std;
 
@@ -49,7 +51,7 @@ int blackjack_hand_calc(vector<string>& cards)
     return score;
 }
 
-void blackjack()
+int blackjack(int cash)
 {
     list<string> card_deck = {"Ace of Spades","2 of Spades","3 of Spades","4 of Spades","5 of Spades","6 of Spades",
                               "7 of Spades","8 of Spades","9 of Spades","Ten of Spades","Jack of Spades","Queen of Spades","King of Spades",
@@ -118,6 +120,9 @@ void blackjack()
     cards_in_deck--;
 
     cout << "BLACKJACK\n";
+
+    int bet_amount = input_cash(cash);
+
     cout << "dealer's face up card: ";
     this_thread::sleep_for(chrono::seconds(1));
     cout << dealer_faceup << "\n";
@@ -164,7 +169,9 @@ void blackjack()
             if(blackjack_hand_calc(players_cards) > 21)
             {
                 cout << "bust! " << "dealer's face down card is: " << dealer_facedown << "\n";
-                return;
+                cout << "-$" << bet_amount;
+                this_thread::sleep_for(chrono::seconds(1));
+                return cash - bet_amount;
             }
         }
         else
@@ -209,20 +216,22 @@ void blackjack()
 
     if(dealer_score < player_score)
     {
-        cout << "you win!";
-        //cash stuff
-        return; //return money
+        cout << "you win!\n";
+        cout << "+$" << 2*bet_amount;
+        this_thread::sleep_for(chrono::seconds(1));
+        return cash + bet_amount;
     }
     if(dealer_score > player_score)
     {
-        cout << "you lose!";
-        //cash stuff
-        return;
+        cout << "you lose!\n";
+        cout << "-$" << bet_amount;
+        this_thread::sleep_for(chrono::seconds(1));
+        return cash - bet_amount;
     }
     else
     {
         cout << "you draw!";
-        //cash stuff
-        return;
+        this_thread::sleep_for(chrono::seconds(1));
+        return cash;
     }
 }

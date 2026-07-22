@@ -8,6 +8,7 @@
 #include <chrono>
 
 #include "cardwalk.h"
+#include "inputcasino.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ string red_or_black(string card)
     else return "b";
 }
 
-void card_walk()
+int card_walk(int cash)
 {
     list<string> card_deck = {"Ace of Spades","2 of Spades","3 of Spades","4 of Spades","5 of Spades","6 of Spades",
                               "7 of Spades","8 of Spades","9 of Spades","Ten of Spades","Jack of Spades","Queen of Spades","King of Spades",
@@ -40,6 +41,8 @@ void card_walk()
     int random_card = random_index_shuffle(mt);
 
     cout << "CARDWALK\n";
+
+    int bet_amount = input_cash(cash);
 
     size_t counter {0};
 
@@ -69,13 +72,17 @@ void card_walk()
         else
         {
             cout << "you lose!\n";
-            //lose stuff
-            return;
+            cout << "-$" << bet_amount;
+            this_thread::sleep_for(chrono::seconds(1));
+            return cash - bet_amount;
         }
         no_of_cards--;
         counter++;
     }
 
     cout << "you win!";
-    return;
+    cout << "+$" << bet_amount * 7;
+    this_thread::sleep_for(chrono::seconds(1));
+    return cash + bet_amount * 6;
+
 }

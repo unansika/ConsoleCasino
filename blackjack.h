@@ -6,6 +6,6 @@
 #include <string>
 
 int blackjack_hand_calc(std::vector<std::string>& cards);
-void blackjack();
+int blackjack(int cash);
 
 #endif

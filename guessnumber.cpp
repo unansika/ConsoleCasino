@@ -6,13 +6,18 @@
 #include <random>
 
 #include "guessnumber.h"
+#include "inputcasino.h"
 
 using namespace std;
 
-void guess_number()
+int guess_number(int cash)
 {
     string line;
     int choice;
+    cout << "GUESS THE NUMBER\n";
+
+    int bet_amount = input_cash(cash);
+
     cout << "guess the number (1-10):\n";
 
     while(getline(cin, line)) //getting choice as int
@@ -42,14 +47,16 @@ void guess_number()
 
     if(rand_no == choice)
     {
-        cout << "you win";
-        //more win stuff
-        return;
+        cout << "you win!";
+        cout << "+$" << bet_amount * 9;
+        this_thread::sleep_for(chrono::seconds(1));
+        return cash + bet_amount * 8;
     }
     else
     {
-        cout << "you lose";
-        //more lose stuff
-        return;
+        cout << "you lose!\n";
+        cout << "-$" << bet_amount;
+        this_thread::sleep_for(chrono::seconds(1));
+        return cash - bet_amount;
     }
 }

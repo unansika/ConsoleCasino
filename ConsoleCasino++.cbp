@@ -40,6 +40,8 @@
 		<Unit filename="cardwalk.h" />
 		<Unit filename="guessnumber.cpp" />
 		<Unit filename="guessnumber.h" />
+		<Unit filename="inputcasino.cpp" />
+		<Unit filename="inputcasino.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="roulette.cpp" />
 		<Unit filename="roulette.h" />

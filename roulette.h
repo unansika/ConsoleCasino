@@ -5,8 +5,6 @@
 #include <vector>
 
 void roulette_map();
-int input_cash(int cash);
-int input_number(int minimum, int maximum);
 
 int straight_up_bet(std::vector<std::vector<int>> &bets, int cash);
 int red_black_bet(std::vector<std::vector<int>> &bets, int cash);

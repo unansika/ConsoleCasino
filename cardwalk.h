@@ -5,6 +5,6 @@
 #include <string>
 
 std::string red_or_black();
-void card_walk();
+int card_walk(int cash);
 
 #endif

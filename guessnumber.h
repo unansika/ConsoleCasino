@@ -2,6 +2,6 @@
 
 #define GUESSNUMBER_H
 
-void guess_number();
+int guess_number(int cash);
 
 #endif
