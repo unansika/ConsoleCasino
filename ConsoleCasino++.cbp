@@ -32,6 +32,8 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="baccarat.cpp" />
+		<Unit filename="baccarat.h" />
 		<Unit filename="blackjack.cpp" />
 		<Unit filename="blackjack.h" />
 		<Unit filename="cardwalk.cpp" />
@@ -41,6 +43,8 @@
 		<Unit filename="main.cpp" />
 		<Unit filename="roulette.cpp" />
 		<Unit filename="roulette.h" />
+		<Unit filename="videopoker.cpp" />
+		<Unit filename="videopoker.h" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>

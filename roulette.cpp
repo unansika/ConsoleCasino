@@ -263,7 +263,24 @@ int row_bet(vector<vector<int>> &bets, int cash)
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
+    cout << "row bet, pays 11 to 1\n";
+    cout << "enter row number from 1 to 12\n";
+    cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
 
+    int choice = input_number(1, 12);
+
+    vector<int> bet;
+
+    bet.reserve(3);
+    bet.insert(bet.end(), {choice*3-2,choice*3-1,choice*3});
+
+    bet.push_back(12); //payout multiplier
+
+    int bet_amount = input_cash(cash);
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount;
 }
 
 int column_bet(vector<vector<int>> &bets, int cash)
@@ -277,9 +294,48 @@ int column_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+    cout << "column bet, pays 2 to 1\n";
+    cout << "enter column number 1 to 3\n";
+    cout << "column 1 starts with 1 etc.\n";
+
+    string choice {};
+
+    while(true)
+    {
+        cin >> choice;
+        if(choice == "1" || choice == "2" || choice == "3") break;
+        cout << "error please enter '1', '2' or '3'\n";
+    }
+
+    vector<int> bet;
+
+    if(choice == "1")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(),{1,4,7,10,13,16,19,22,25,28,31,34});
+    }
+    else if(choice == "2")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(),{2,5,8,11,14,17,20,23,26,29,32,35});
+    }
+    else if(choice == "3")
+    {
+        bet.reserve(12);
+        bet.insert(bet.end(),{3,6,9,12,15,18,21,24,27,30,33,36});
+    }
+
+    bet.push_back(3); //payout multiplier
+
+    int bet_amount = input_cash(cash);
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount;
 }
 
-int five_bet(vector<vector<int>> &bets, int cash)
+int four_bet(vector<vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
@@ -290,6 +346,13 @@ int five_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+
+    vector<int> bet;
+
+    bets.push_back(bet);
+
+    return cash;
 }
 
 int six_bet(vector<vector<int>> &bets, int cash)
@@ -303,6 +366,25 @@ int six_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+    cout << "row bet, pays 11 to 1\n";
+    cout << "enter row number from 1 to 12\n";
+    cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
+
+    int choice = input_number(1, 12);
+
+    vector<int> bet;
+
+    bet.reserve(3);
+    bet.insert(bet.end(), {choice*3-2,choice*3-1,choice*3});
+
+    bet.push_back(12); //payout multiplier
+
+    int bet_amount = input_cash(cash);
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount;
 }
 
 int corner_bet(vector<vector<int>> &bets, int cash)
@@ -316,6 +398,12 @@ int corner_bet(vector<vector<int>> &bets, int cash)
 
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
+
+    vector<int> bet;
+
+    bets.push_back(bet);
+
+    return cash;
 }
 
 int high_low_bet(vector<vector<int>> &bets, int cash)
@@ -377,66 +465,115 @@ int split_bet(vector<vector<int>> &bets, int cash)
     cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
+    cout << "split bet, pays 17 to 1\n";
+    cout << "enter 2 numbers that are adjacent on the board\n";
+    cout << "enter first number\n";
+
+    int first_choice = input_number(1,36);
+
+    cout << "enter second adjacent number\n";
+
+    int second_choice {};
+
+    string line;
+
+    while(getline(cin, line)) //getting input as int
+    {
+        stringstream stream_input(line);
+        if(stream_input >> second_choice)
+        {
+            if(stream_input.eof() && second_choice > 0 && second_choice <= 36)
+            {
+                if(first_choice > 3 && second_choice == first_choice - 3) break;
+                else if(first_choice < 34 && second_choice == first_choice + 3) break;
+                else if(first_choice % 3 == 0 && second_choice == first_choice - 1) break;
+                else if((first_choice + 2) % 3 == 0 && second_choice == first_choice + 1) break;
+                else if((first_choice + 1) % 3 == 0 && (second_choice == first_choice + 1 || second_choice == first_choice -1)) break;
+            }
+        }
+
+        cout << "error please enter adjacent number\n";
+    }
+
+    vector<int> bet;
+
+    bet.push_back(first_choice);
+    bet.push_back(second_choice);
+
+    bet.push_back(18); //payout multiplier
+
+    int bet_amount = input_cash(cash);
+
+    bet.push_back(bet_amount);
+
+    bets.push_back(bet);
+
+    return cash -= bet_amount;
 }
 
 int roulette_initial_bets(vector<vector<int>> &bets, int cash)
 {
     while(true)
     {
-        char choice {};
         cout << "\033[2J\033[H"; //clears console
         cout << "ROULETTE\n";
         cout << "select bets\n";
         cout << "1-straight up" << "   " << "2-red or black\n";
         cout << "3-even or odd" << "   " << "4-dozen bet\n";
         cout << "5-row bet" << "       " << "6-column bet\n";
-        cout << "7-five numbers" << "  " << "8-six numbers\n";
-        cout << "9-corner bet" << "    " << "h-high or low\n";
-        cout << "p-split bet" << "     " << "s-spin wheel\n";
+        cout << "7-the 4 numbers" << " " << "8-six numbers\n";
+        cout << "9-corner bet" << "    " << "10-high or low\n";
+        cout << "11-split bet" << "    " << "12-spin wheel\n";
 
-        cin >> choice;
+        int choice = input_number(1,12);
 
         switch(choice)
         {
-            case '1':
+            case 1:
                 cash = straight_up_bet(bets,cash);
                 break;
 
-            case '2':
+            case 2:
                 cash = red_black_bet(bets,cash);
                 break;
 
-            case '3':
+            case 3:
                 cash = even_odd_bet(bets,cash);
                 break;
 
-            case '4':
+            case 4:
                 cash = dozen_bet(bets,cash);
                 break;
 
-            case '5':
-                //todo
+            case 5:
+                cash = row_bet(bets,cash);
+                break;
 
-            case '6':
-                //todo
+            case 6:
+                cash = column_bet(bets,cash);
+                break;
 
-            case '7':
-                //todo
+            case 7:
+                cash = four_bet(bets,cash);
+                break;
 
-            case '8':
-                //todo
+            case 8:
+                cash = six_bet(bets,cash);
+                break;
 
-            case '9':
-                //todo
+            case 9:
+                cash = corner_bet(bets,cash);
+                break;
 
-            case 'h':
+            case 10:
                 cash = high_low_bet(bets,cash);
                 break;
 
-            case 'p':
-                //todo
+            case 11:
+                cash = split_bet(bets,cash);
+                break;
 
-            case 's':
+            case 12:
                 return cash;
 
             default:
@@ -449,7 +586,10 @@ int roulette_initial_bets(vector<vector<int>> &bets, int cash)
 int roulette(int cash)
 {
     vector<vector<int>> bets;
-    //key for vector: vector of vector, each vector i in the vector vec contains ints, last int of each vector i is bet the bet amount, second last int is the payout multiplier;
+    //key for vector: vector of vector
+    //each vector i in the vector vec contains ints
+    //last int of each vector i is bet the bet amount
+    //second last int is the payout multiplier;
 
     int initial_cash = cash;
     cash = roulette_initial_bets(bets, cash);
