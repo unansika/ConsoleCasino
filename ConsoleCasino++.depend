@@ -89,3 +89,89 @@
 	<chrono>
 	"roulette.h"
 
+1784728987 source:c:\users\reece\documents\github\consolecasino-\baccarat.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<sstream>
+	<string>
+	<vector>
+	<thread>
+	<chrono>
+	"baccarat.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\baccarat.h
+
+1784733287 source:c:\users\reece\documents\github\consolecasino-\blackjack.cpp
+	<iostream>
+	<list>
+	<vector>
+	<iterator>
+	<typeinfo>
+	<chrono>
+	<thread>
+	<string>
+	<random>
+	"blackjack.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\blackjack.h
+	<vector>
+	<string>
+
+1784733765 source:c:\users\reece\documents\github\consolecasino-\cardwalk.cpp
+	<iostream>
+	<string>
+	<vector>
+	<list>
+	<random>
+	<iterator>
+	<thread>
+	<chrono>
+	"cardwalk.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\cardwalk.h
+	<string>
+
+1784733718 source:c:\users\reece\documents\github\consolecasino-\guessnumber.cpp
+	<iostream>
+	<string>
+	<sstream>
+	<chrono>
+	<thread>
+	<random>
+	"guessnumber.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\guessnumber.h
+
+1784732623 source:c:\users\reece\documents\github\consolecasino-\main.cpp
+	"blackjack.h"
+	"guessnumber.h"
+	"cardwalk.h"
+	"roulette.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\roulette.h
+	<vector>
+
+1784733738 source:c:\users\reece\documents\github\consolecasino-\roulette.cpp
+	<iostream>
+	<random>
+	<sstream>
+	<string>
+	<vector>
+	<thread>
+	<chrono>
+	"roulette.h"
+
+1784728987 source:c:\users\reece\documents\github\consolecasino-\videopoker.cpp
+	<iostream>
+	<ctime>
+	<cstdlib>
+	<sstream>
+	<string>
+	<vector>
+	<thread>
+	<chrono>
+	"videopoker.h"
+
+1784728987 c:\users\reece\documents\github\consolecasino-\videopoker.h
+

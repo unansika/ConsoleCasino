@@ -2,8 +2,7 @@
 #include <string>
 #include <vector>
 #include <list>
-#include <ctime>
-#include <cstdlib>
+#include <random>
 #include <iterator>
 #include <thread>
 #include <chrono>
@@ -33,11 +32,15 @@ void card_walk()
                               "Ace of Hearts","2 of Hearts","3 of Hearts","4 of Hearts","5 of Hearts","6 of Hearts",
                               "7 of Hearts","8 of Hearts","9 of Hearts","Ten of Hearts","Jack of Hearts","Queen of Hearts","King of Hearts"};
 
-    srand(time(0));
+    mt19937 mt{ static_cast<mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
+
+    int no_of_cards {52};
+
+    uniform_int_distribution random_index_shuffle{ 1, no_of_cards };
+    int random_card = random_index_shuffle(mt);
 
     cout << "CARDWALK\n";
 
-    int no_of_cards {52};
     size_t counter {0};
 
     while(counter <= 2)
@@ -51,7 +54,8 @@ void card_walk()
             else cout << "error please enter 'r' or 'b':\n";
         }
 
-        int random_card = rand() % no_of_cards;
+        random_index_shuffle = uniform_int_distribution{ 1, no_of_cards };
+        random_card = random_index_shuffle(mt);
         auto it = card_deck.begin();
         advance(it, random_card);
 

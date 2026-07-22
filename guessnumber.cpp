@@ -1,10 +1,9 @@
 #include <iostream>
 #include <string>
 #include <sstream>
-#include <ctime>
-#include <cstdlib>
 #include <chrono>
 #include <thread>
+#include <random>
 
 #include "guessnumber.h"
 
@@ -30,8 +29,9 @@ void guess_number()
         cout << "\n" << "error please enter number (1-10):\n";
     }
 
-    srand(time(0));
-    int rand_no = rand() % 10 + 1;
+    mt19937 mt{ static_cast<mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
+    uniform_int_distribution random_no_dist{ 1, 10 };
+    int rand_no = random_no_dist(mt);
 
     cout << "the number is . . . \n";
     this_thread::sleep_for(chrono::seconds(1));

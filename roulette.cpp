@@ -1,6 +1,5 @@
 #include <iostream>
-#include <ctime>
-#include <cstdlib>
+#include <random>
 #include <sstream>
 #include <string>
 #include <vector>
@@ -594,8 +593,9 @@ int roulette(int cash)
     int initial_cash = cash;
     cash = roulette_initial_bets(bets, cash);
 
-    srand(time(0));
-    int roulette_number = rand() % 37;
+    mt19937 mt{ static_cast<mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
+    uniform_int_distribution random_index_shuffle{ 1, 36 };
+    int roulette_number = random_index_shuffle(mt);
 
     if(cash == initial_cash)
     {

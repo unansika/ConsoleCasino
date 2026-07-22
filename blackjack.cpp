@@ -2,12 +2,11 @@
 #include <list>
 #include <vector>
 #include <iterator>
-#include <cstdlib>
-#include <ctime>
 #include <typeinfo>
 #include <chrono>
 #include <thread>
 #include <string>
+#include <random>
 
 #include "blackjack.h"
 
@@ -72,10 +71,12 @@ void blackjack()
     vector<string> dealer_cards;
     vector<string> players_cards;
 
+    mt19937 mt{ static_cast<mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
     int cards_in_deck {52};
-    srand(time(0));
 
-    int random_card = rand() % cards_in_deck;
+    uniform_int_distribution random_index_shuffle{ 1, cards_in_deck };
+    int random_card = random_index_shuffle(mt);
+
     auto it = card_deck.begin();
     advance(it, random_card);
 
@@ -85,7 +86,8 @@ void blackjack()
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_card = rand() % cards_in_deck;
+    random_index_shuffle = uniform_int_distribution { 1, cards_in_deck };
+    random_card = random_index_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -94,7 +96,8 @@ void blackjack()
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_card = rand() % cards_in_deck;
+    random_index_shuffle = uniform_int_distribution { 1, cards_in_deck };
+    random_card = random_index_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -104,7 +107,8 @@ void blackjack()
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_card = rand() % cards_in_deck;
+    random_index_shuffle = uniform_int_distribution { 1, cards_in_deck };
+    random_card = random_index_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -141,7 +145,9 @@ void blackjack()
         {
             index_in_players_hand++;
 
-            random_card = rand() % cards_in_deck;
+            random_index_shuffle = uniform_int_distribution { 1, cards_in_deck };
+            random_card = random_index_shuffle(mt);
+
             it = card_deck.begin();
             advance(it, random_card);
 
