@@ -9,8 +9,6 @@
 
 #include "baccarat.h"
 
-using namespace std;
-
 int baccarat(int cash)
 {
     return cash;

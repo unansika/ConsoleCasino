@@ -9,8 +9,6 @@
 
 #include "videopoker.h"
 
-using namespace std;
-
 int vid_poker(int cash)
 {
     return cash;

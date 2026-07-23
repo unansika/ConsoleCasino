@@ -9,8 +9,6 @@
 #include "roulette.h"
 #include "inputcasino.h"
 
-using namespace std;
-
 void roulette_map()
 {
     /*cout << "   ┌───────────────────────────────────┐\n";
@@ -25,36 +23,36 @@ void roulette_map()
     cout << "   │\033[32m1-18\033[0m │\033[32meven\033[0m │ \033[31mred\033[0m │black│ \033[32modd\033[0m │\033[32m19-36\033[0m│\n";
     cout << "   └───────────────────────────────────┘\n";*/
 
-    cout << "   ┌───────────────────────────────────┐\n";
-    cout << "   │3 │6 │9 │12│15│18│21│24│27│30│33│36│\n";
-    cout << "┌──│──│──│──│──│──│──│──│──│──│──│──│──│\n";
-    cout << "│0 │2 │5 │8 │11│14│17│20│23│26│29│32│35│\n";
-    cout << "└──│──│──│──│──│──│──│──│──│──│──│──│──│\n";
-    cout << "   │1 │4 │7 │10│13│16│19│22│25│28│31│34│\n";
-    cout << "   └───────────────────────────────────┘\n";
-    cout << "   │   1st 12  │  2nd 12   │  3rd 12   │\n";
-    cout << "   └───────────────────────────────────┘\n";
-    cout << "   │1-18 │even │ red │black│ odd │19-36│\n";
-    cout << "   └───────────────────────────────────┘\n";
+    std::cout << "   |-----------------------------------|\n";
+    std::cout << "   |3 |6 |9 |12|15|18|21|24|27|30|33|36|\n";
+    std::cout << "|--|--|--|--|--|--|--|--|--|--|--|--|--|\n";
+    std::cout << "|0 |2 |5 |8 |11|14|17|20|23|26|29|32|35|\n";
+    std::cout << "|--|--|--|--|--|--|--|--|--|--|--|--|--|\n";
+    std::cout << "   |1 |4 |7 |10|13|16|19|22|25|28|31|34|\n";
+    std::cout << "   |-----------------------------------|\n";
+    std::cout << "   |   1st 12  |  2nd 12   |  3rd 12   |\n";
+    std::cout << "   |-----------------------------------|\n";
+    std::cout << "   |1-18 |even | red |black| odd |19-36|\n";
+    std::cout << "   |-----------------------------------|\n";
 }
 
-int straight_up_bet(vector<vector<int>> &bets, int cash)
+int straight_up_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
 
     roulette_map();
 
-    cout << "straight up bet, pays 35 to 1";
-    cout << "enter number to bet on(0-36):\n";
+    std::cout << "straight up bet, pays 35 to 1";
+    std::cout << "enter number to bet on(0-36):\n";
 
-    vector<int> bet;
+    std::vector<int> bet;
     bet.push_back(input_number(0,36)); //input number that is bet on and add to bet vector
 
     bet.push_back(36); //input payout multiplier into vector
@@ -68,30 +66,30 @@ int straight_up_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-int red_black_bet(vector<vector<int>> &bets, int cash)
+int red_black_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "red or black bet, pays 1 to 1";
-    cout << "enter red or black 'r' or 'b'):\n";
+    std::cout << "red or black bet, pays 1 to 1";
+    std::cout << "enter red or black 'r' or 'b'):\n";
 
-    string choice {};
+    std::string choice {};
     while(true)
     {
-        cin >> choice;
+        std::cin >> choice;
         if(choice == "r" || choice == "b") break;
-        else cout << "error please enter 'r' or 'b':\n";
+        else std::cout << "error please enter 'r' or 'b':\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     if(choice == "r")
     {
@@ -115,30 +113,30 @@ int red_black_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-int even_odd_bet(vector<vector<int>> &bets, int cash)
+int even_odd_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "even or odd bet, pays 1 to 1";
-    cout << "enter odd or even 'o' or 'e'):\n";
+    std::cout << "even or odd bet, pays 1 to 1";
+    std::cout << "enter odd or even 'o' or 'e'):\n";
 
-    string choice {};
+    std::string choice {};
     while(true)
     {
-        cin >> choice;
+        std::cin >> choice;
         if(choice == "o" || choice == "e") break;
-        else cout << "error please enter 'o' or 'e':\n";
+        else std::cout << "error please enter 'o' or 'e':\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     if(choice == "o")
     {
@@ -162,32 +160,32 @@ int even_odd_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-int dozen_bet(vector<vector<int>> &bets, int cash)
+int dozen_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "dozen bet, pays 2 to 1";
-    cout << "enter '1' for 1st 12(1-12)\n";
-    cout << "enter '2' for 2nd 12(13-24)\n";
-    cout << "enter '3' for 3rd 12(25-36):\n";
+    std::cout << "dozen bet, pays 2 to 1";
+    std::cout << "enter '1' for 1st 12(1-12)\n";
+    std::cout << "enter '2' for 2nd 12(13-24)\n";
+    std::cout << "enter '3' for 3rd 12(25-36):\n";
 
-    string choice {};
+    std::string choice {};
     while(true)
     {
-        cin >> choice;
+        std::cin >> choice;
         if(choice == "1" || choice == "2" || choice == "3") break;
-        else cout << "error please enter '1', '2' or '3':\n";
+        else std::cout << "error please enter '1', '2' or '3':\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     if(choice == "1")
     {
@@ -216,25 +214,25 @@ int dozen_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-int row_bet(vector<vector<int>> &bets, int cash)
+int row_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "row bet, pays 11 to 1\n";
-    cout << "enter row number from 1 to 12\n";
-    cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
+    std::cout << "row bet, pays 11 to 1\n";
+    std::cout << "enter row number from 1 to 12\n";
+    std::cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
 
     int choice = input_number(1, 12);
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     bet.reserve(3);
     bet.insert(bet.end(), {choice*3-2,choice*3-1,choice*3});
@@ -248,32 +246,32 @@ int row_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount;
 }
 
-int column_bet(vector<vector<int>> &bets, int cash)
+int column_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "column bet, pays 2 to 1\n";
-    cout << "enter column number 1 to 3\n";
-    cout << "column 1 starts with 1 etc.\n";
+    std::cout << "column bet, pays 2 to 1\n";
+    std::cout << "enter column number 1 to 3\n";
+    std::cout << "column 1 starts with 1 etc.\n";
 
-    string choice {};
+    std::string choice {};
 
     while(true)
     {
-        cin >> choice;
+        std::cin >> choice;
         if(choice == "1" || choice == "2" || choice == "3") break;
-        cout << "error please enter '1', '2' or '3'\n";
+        std::cout << "error please enter '1', '2' or '3'\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     if(choice == "1")
     {
@@ -300,45 +298,45 @@ int column_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount;
 }
 
-int four_bet(vector<vector<int>> &bets, int cash)
+int four_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     bets.push_back(bet);
 
     return cash;
 }
 
-int six_bet(vector<vector<int>> &bets, int cash)
+int six_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "row bet, pays 11 to 1\n";
-    cout << "enter row number from 1 to 12\n";
-    cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
+    std::cout << "row bet, pays 11 to 1\n";
+    std::cout << "enter row number from 1 to 12\n";
+    std::cout << "row 1 - 1,2,3  row 2 - 4,5,6 etc.\n";
 
     int choice = input_number(1, 12);
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     bet.reserve(3);
     bet.insert(bet.end(), {choice*3-2,choice*3-1,choice*3});
@@ -352,49 +350,49 @@ int six_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount;
 }
 
-int corner_bet(vector<vector<int>> &bets, int cash)
+int corner_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     bets.push_back(bet);
 
     return cash;
 }
 
-int high_low_bet(vector<vector<int>> &bets, int cash)
+int high_low_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "high or low bet, pays 1 to 1";
-    cout << "enter high or low 'h' or 'l'):\n";
+    std::cout << "high or low bet, pays 1 to 1";
+    std::cout << "enter high or low 'h' or 'l'):\n";
 
-    string choice {};
+    std::string choice {};
     while(true)
     {
-        cin >> choice;
+        std::cin >> choice;
         if(choice == "h" || choice == "l") break;
-        else cout << "error please enter 'h' or 'l':\n";
+        else std::cout << "error please enter 'h' or 'l':\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     if(choice == "h")
     {
@@ -418,33 +416,33 @@ int high_low_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount; //return cash after
 }
 
-int split_bet(vector<vector<int>> &bets, int cash)
+int split_bet(std::vector<std::vector<int>> &bets, int cash)
 {
     if(cash == 0)
     {
-        cout << "no cash left for bets\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "no cash left for bets\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return 0;
     }
 
-    cout << "\033[2J\033[H"; //clears console
+    std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
-    cout << "split bet, pays 17 to 1\n";
-    cout << "enter 2 numbers that are adjacent on the board\n";
-    cout << "enter first number\n";
+    std::cout << "split bet, pays 17 to 1\n";
+    std::cout << "enter 2 numbers that are adjacent on the board\n";
+    std::cout << "enter first number\n";
 
     int first_choice = input_number(1,36);
 
-    cout << "enter second adjacent number\n";
+    std::cout << "enter second adjacent number\n";
 
     int second_choice {};
 
-    string line;
+    std::string line;
 
-    while(getline(cin, line)) //getting input as int
+    while(getline(std::cin, line)) //getting input as int
     {
-        stringstream stream_input(line);
+        std::stringstream stream_input(line);
         if(stream_input >> second_choice)
         {
             if(stream_input.eof() && second_choice > 0 && second_choice <= 36)
@@ -457,10 +455,10 @@ int split_bet(vector<vector<int>> &bets, int cash)
             }
         }
 
-        cout << "error please enter adjacent number\n";
+        std::cout << "error please enter adjacent number\n";
     }
 
-    vector<int> bet;
+    std::vector<int> bet;
 
     bet.push_back(first_choice);
     bet.push_back(second_choice);
@@ -476,19 +474,19 @@ int split_bet(vector<vector<int>> &bets, int cash)
     return cash -= bet_amount;
 }
 
-int roulette_initial_bets(vector<vector<int>> &bets, int cash)
+int roulette_initial_bets(std::vector<std::vector<int>> &bets, int cash)
 {
     while(true)
     {
-        cout << "\033[2J\033[H"; //clears console
-        cout << "ROULETTE\n";
-        cout << "select bets\n";
-        cout << "1-straight up" << "   " << "2-red or black\n";
-        cout << "3-even or odd" << "   " << "4-dozen bet\n";
-        cout << "5-row bet" << "       " << "6-column bet\n";
-        cout << "7-the 4 numbers" << " " << "8-six numbers\n";
-        cout << "9-corner bet" << "    " << "10-high or low\n";
-        cout << "11-split bet" << "    " << "12-spin wheel\n";
+        std::cout << "\033[2J\033[H"; //clears console
+        std::cout << "ROULETTE\n";
+        std::cout << "select bets\n";
+        std::cout << "1-straight up" << "   " << "2-red or black\n";
+        std::cout << "3-even or odd" << "   " << "4-dozen bet\n";
+        std::cout << "5-row bet" << "       " << "6-column bet\n";
+        std::cout << "7-the 4 numbers" << " " << "8-six numbers\n";
+        std::cout << "9-corner bet" << "    " << "10-high or low\n";
+        std::cout << "11-split bet" << "    " << "12-spin wheel\n";
 
         int choice = input_number(1,12);
 
@@ -542,7 +540,7 @@ int roulette_initial_bets(vector<vector<int>> &bets, int cash)
                 return cash;
 
             default:
-                cout << "error invalid choice";
+                std::cout << "error invalid choice";
                 break;
         }
     }
@@ -550,7 +548,7 @@ int roulette_initial_bets(vector<vector<int>> &bets, int cash)
 
 int roulette(int cash)
 {
-    vector<vector<int>> bets;
+    std::vector<std::vector<int>> bets;
     //key for vector: vector of vector
     //each vector i in the vector vec contains ints
     //last int of each vector i is bet the bet amount
@@ -559,35 +557,35 @@ int roulette(int cash)
     int initial_cash = cash;
     cash = roulette_initial_bets(bets, cash);
 
-    mt19937 mt{ static_cast<mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
-    uniform_int_distribution random_index_shuffle{ 1, 36 };
+    std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
+    std::uniform_int_distribution random_index_shuffle{ 1, 36 };
     int roulette_number = random_index_shuffle(mt);
 
     if(cash == initial_cash)
     {
-        cout << "no bets made going back to menu\n";
+        std::cout << "no bets made going back to menu\n";
         return cash;
     }
 
-    cout << "\033[2J\033[H"; //clears console
-    cout << "bets are in\n";
+    std::cout << "\033[2J\033[H"; //clears console
+    std::cout << "bets are in\n";
 
-    this_thread::sleep_for(chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    cout << "dealer spins the wheel and throws in the ball!\n";
+    std::cout << "dealer spins the wheel and throws in the ball!\n";
 
-    this_thread::sleep_for(chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
 
     for(size_t i = 0; i < 4; i++)
     {
-        cout << "rolling...\n";
-        this_thread::sleep_for(chrono::seconds(1));
-        cout << "looks like it could be a " << rand() % 37 << "!\n";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "rolling...\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::cout << "looks like it could be a " << rand() % 37 << "!\n";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
-    cout << "\033[2J\033[H"; //clears console
-    cout << "the ball lands on the " << roulette_number << "!\n";
+    std::cout << "\033[2J\033[H"; //clears console
+    std::cout << "the ball lands on the " << roulette_number << "!\n";
 
     int prepayout_cash = cash;
 
@@ -599,10 +597,10 @@ int roulette(int cash)
         {
             if(bets[i][j] == roulette_number)
             {
-                this_thread::sleep_for(chrono::seconds(1));
-                cout << "bet hits with a " << bets[i][bets.size()-2] << "x payout!\n";
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+                std::cout << "bet hits with a " << bets[i][bets.size()-2] << "x payout!\n";
                 int winnings = bets[i][bets.size()-2]*bets[i][bets.size()-1];
-                cout << "you win " << winnings << "\n";
+                std::cout << "you win " << winnings << "\n";
                 cash += winnings;
                 break;
             }
@@ -611,12 +609,12 @@ int roulette(int cash)
 
     if(cash == prepayout_cash)
     {
-        cout << "you won no bets :( going back to menu";
-        this_thread::sleep_for(chrono::seconds(1));
+        std::cout << "you won no bets :( going back to menu";
+        std::this_thread::sleep_for(std::chrono::seconds(1));
         return cash;
     }
 
-    cout << "you won: " << cash - prepayout_cash << "! going back to menu\n";
-    this_thread::sleep_for(chrono::seconds(1));
+    std::cout << "you won: " << cash - prepayout_cash << "! going back to menu\n";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
     return cash;
 }
