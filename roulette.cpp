@@ -5,6 +5,7 @@
 #include <vector>
 #include <thread>
 #include <chrono>
+#include <algorithm>
 
 #include "roulette.h"
 #include "inputcasino.h"
@@ -240,13 +241,13 @@ int row_bet(std::vector<std::vector<int>> &bets, int cash, std::vector<std::stri
     bet.reserve(3);
     bet.insert(bet.end(), {choice*3-2,choice*3-1,choice*3});
 
-    bets_names.push_back("bet on a row");
-
     bet.push_back(12); //payout multiplier
 
     int bet_amount = input_cash(cash);
 
     bet.push_back(bet_amount);
+
+    bets_names.push_back("bet on a row");
 
     bets.push_back(bet);
 
@@ -291,11 +292,11 @@ int column_bet(std::vector<std::vector<int>> &bets, int cash, std::vector<std::s
 
     bet.push_back(3); //payout multiplier
 
-    bets_names.push_back("bet on a column");
-
     int bet_amount = input_cash(cash);
 
     bet.push_back(bet_amount);
+
+    bets_names.push_back("bet on a column");
 
     bets.push_back(bet);
 
@@ -331,9 +332,9 @@ int four_bet(std::vector<std::vector<int>> &bets, int cash, std::vector<std::str
 
     int bet_amount = input_cash(cash);
 
-    bets_names.push_back("bet on 0,1,2,3");
-
     bet.push_back(bet_amount);
+
+    bets_names.push_back("bet on 0,1,2,3");
 
     bets.push_back(bet);
 
@@ -390,13 +391,47 @@ int corner_bet(std::vector<std::vector<int>> &bets, int cash, std::vector<std::s
     std::cout << "\033[2J\033[H"; //clears console
     roulette_map();
 
+    std::cout << "corner bet, pays 8 to 1\n";
+    std::cout << "4 numbers meeting at the same corner\n";
+    std::cout << "enter 4 numbers which meet at a corner seperated\n";
+
+    int first_number {0};
+    int second_number {0};
+    int third_number {0};
+    int fourth_number {0};
+
+    while(true)
+    {
+        std::cout << "enter first number\n";
+        first_number = input_number(1,36);
+        std::cout << "enter second number\n";
+        second_number = input_number(1,36);
+        std::cout << "enter third number\n";
+        third_number = input_number(1,36);
+        std::cout << "enter fourth number\n";
+        fourth_number = input_number(1,36);
+        std::vector<int> corner_bet_vec {first_number,second_number,third_number,fourth_number};
+        std::sort(corner_bet_vec.begin(), corner_bet_vec.end());
+        if(corner_bet_vec[0]%3 != 0 && corner_bet_vec[0] == corner_bet_vec[1] - 1 && corner_bet_vec[1] == corner_bet_vec[2] - 2 && corner_bet_vec[2] == corner_bet_vec[3] - 1) break;
+        std::cout << "error please enter 4 numbers which meet at a corner\n";
+    }
+
     std::vector<int> bet;
+
+    bet.reserve(4);
+    bet.insert(bet.end(), {first_number,second_number,third_number,fourth_number});
+
+    bet.push_back(9); //payout multiplier
+
+    int bet_amount = input_cash(cash);
+
+    bet.push_back(bet_amount);
 
     bets_names.push_back("bet on corner(4 numbers)");
 
     bets.push_back(bet);
 
-    return cash;
+    return -= bet_amount;
 }
 
 int high_low_bet(std::vector<std::vector<int>> &bets, int cash, std::vector<std::string> &bets_names)

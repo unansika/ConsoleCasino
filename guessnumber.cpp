@@ -50,7 +50,7 @@ int guess_number(int cash)
     if(rand_no == choice)
     {
         std::cout << "you win!\n";
-        std::cout << "+$" << bet_amount * 9;
+        std::cout << "+$" << bet_amount * 8;
         get_enter();
         return cash + bet_amount * 8;
     }
