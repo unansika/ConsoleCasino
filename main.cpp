@@ -28,7 +28,7 @@ int main()
 
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    std::cout << "you are loser lol\n";
+    std::cout << "you are loser lol";
 
     get_enter();
 

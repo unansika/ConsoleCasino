@@ -8,6 +8,7 @@
 #include <string>
 #include <random>
 #include <sstream>
+#include <limits>
 
 #include "blackjack.h"
 #include "inputcasino.h"
@@ -72,10 +73,10 @@ int blackjack(int cash)
     std::vector<std::string> players_cards;
 
     std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
-    int cards_in_deck {52};
+    int cards_in_deck {51};
 
-    std::uniform_int_distribution random_index_shuffle{ 1, cards_in_deck };
-    int random_card = random_index_shuffle(mt);
+    std::uniform_int_distribution random_it_shuffle{ 0, cards_in_deck };
+    int random_card = random_it_shuffle(mt);
 
     auto it = card_deck.begin();
     advance(it, random_card);
@@ -86,8 +87,8 @@ int blackjack(int cash)
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_index_shuffle = std::uniform_int_distribution { 1, cards_in_deck };
-    random_card = random_index_shuffle(mt);
+    random_it_shuffle = std::uniform_int_distribution { 0, cards_in_deck };
+    random_card = random_it_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -96,8 +97,8 @@ int blackjack(int cash)
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_index_shuffle = std::uniform_int_distribution { 1, cards_in_deck };
-    random_card = random_index_shuffle(mt);
+    random_it_shuffle = std::uniform_int_distribution { 0, cards_in_deck };
+    random_card = random_it_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -107,8 +108,8 @@ int blackjack(int cash)
     card_deck.erase(it);
     cards_in_deck--;
 
-    random_index_shuffle = std::uniform_int_distribution { 1, cards_in_deck };
-    random_card = random_index_shuffle(mt);
+    random_it_shuffle = std::uniform_int_distribution { 0, cards_in_deck };
+    random_card = random_it_shuffle(mt);
     it = card_deck.begin();
     advance(it, random_card);
 
@@ -148,8 +149,8 @@ int blackjack(int cash)
         {
             index_in_players_hand++;
 
-            random_index_shuffle = std::uniform_int_distribution { 1, cards_in_deck };
-            random_card = random_index_shuffle(mt);
+            random_it_shuffle = std::uniform_int_distribution { 0, cards_in_deck };
+            random_card = random_it_shuffle(mt);
 
             it = card_deck.begin();
             advance(it, random_card);
@@ -193,7 +194,8 @@ int blackjack(int cash)
     {
         index_in_dealers_hand++;
 
-        random_card = rand() % cards_in_deck;
+        random_it_shuffle = std::uniform_int_distribution { 0, cards_in_deck };
+        random_card = random_it_shuffle(mt);
         it = card_deck.begin();
         advance(it, random_card);
 
@@ -205,30 +207,33 @@ int blackjack(int cash)
         std::this_thread::sleep_for(std::chrono::seconds(2));
         std::cout << "dealer draws: ";
         std::this_thread::sleep_for(std::chrono::seconds(2));
-        std::cout << players_cards[index_in_dealers_hand] << "\n";
+        std::cout << dealer_cards[index_in_dealers_hand] << "\n";
 
         dealer_score = blackjack_hand_calc(dealer_cards);
     }
 
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    if(dealer_score < player_score)
-    {
-        std::cout << "you win!\n";
-        std::cout << "+$" << 2*bet_amount;
-        get_enter();
-        return cash + bet_amount;
-    }
-    if(dealer_score > player_score)
+    if(dealer_score > player_score && dealer_score <= 21)
     {
         std::cout << "you lose!\n";
         std::cout << "-$" << bet_amount;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         get_enter();
         return cash - bet_amount;
+    }
+    else if(dealer_score != player_score)
+    {
+        std::cout << "you win!\n";
+        std::cout << "+$" << bet_amount;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        get_enter();
+        return cash + bet_amount;
     }
     else
     {
         std::cout << "you draw!";
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         get_enter();
         return cash;
     }

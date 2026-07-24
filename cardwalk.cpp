@@ -33,9 +33,9 @@ int card_walk(int cash)
 
     std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
 
-    int no_of_cards {52};
+    int no_of_cards {51};
 
-    std::uniform_int_distribution random_index_shuffle{ 1, no_of_cards };
+    std::uniform_int_distribution random_index_shuffle{ 0, no_of_cards };
     int random_card = random_index_shuffle(mt);
 
     std::cout << "CARDWALK\n";
@@ -57,7 +57,7 @@ int card_walk(int cash)
             else std::cout << "error please enter 'r' or 'b':\n";
         }
 
-        random_index_shuffle = std::uniform_int_distribution{ 1, no_of_cards };
+        random_index_shuffle = std::uniform_int_distribution{ 0, no_of_cards };
         random_card = random_index_shuffle(mt);
         auto it = card_deck.begin();
         advance(it, random_card);
