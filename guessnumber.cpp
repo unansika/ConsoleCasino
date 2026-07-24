@@ -13,10 +13,8 @@ int guess_number(int cash)
     std::string line;
     int choice;
     std::cout << "GUESS THE NUMBER\n";
-
-    int bet_amount = input_cash(cash);
-
-    std::cout << "guess the number (1-10):\n";
+    std::cout << "pays 8 to 1\n";
+    std::cout << "guess the number (1-10):";
 
     while(getline(std::cin, line)) //getting choice as int
     {
@@ -32,29 +30,35 @@ int guess_number(int cash)
         std::cout << "\n" << "error please enter number (1-10):\n";
     }
 
+    int bet_amount = input_cash(cash);
+
     std::mt19937 mt{ static_cast<std::mt19937::result_type>(std::chrono::steady_clock::now().time_since_epoch().count()) };
     std::uniform_int_distribution random_no_dist{ 1, 10 };
     int rand_no = random_no_dist(mt);
 
-    std::cout << "the number is . . . \n";
+    std::cout << "the number is ";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << ".";
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::cout << ".";
     std::this_thread::sleep_for(std::chrono::seconds(1));
     std::cout << ".\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << rand_no << "\n";
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
     if(rand_no == choice)
     {
-        std::cout << "you win!";
+        std::cout << "you win!\n";
         std::cout << "+$" << bet_amount * 9;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        get_enter();
         return cash + bet_amount * 8;
     }
     else
     {
         std::cout << "you lose!\n";
         std::cout << "-$" << bet_amount;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        get_enter();
         return cash - bet_amount;
     }
 }

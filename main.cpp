@@ -28,9 +28,9 @@ int main()
 
     std::this_thread::sleep_for(std::chrono::seconds(2));
 
-    std::cout << "you are loser lol";
+    std::cout << "you are loser lol\n";
 
-    std::this_thread::sleep_for(std::chrono::seconds(2));
+    get_enter();
 
     while(true)
     {
@@ -39,21 +39,21 @@ int main()
         if(cash <= 0)
         {
             std::cout << "better luck next time\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             std::cout << "you have lost everything\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             std::cout << "bye bye home\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             break;
         }
         else if(cash >= 1600)
         {
             std::cout << "lets gooooo $16000\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             std::cout << "you survived and are able to pay rent\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             std::cout << "see you next month\n";
-            std::this_thread::sleep_for(std::chrono::seconds(2));
+            std::this_thread::sleep_for(std::chrono::seconds(3));
             break;
         }
 

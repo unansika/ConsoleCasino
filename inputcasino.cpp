@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <limits>
 
 #include "inputcasino.h"
 
@@ -9,6 +10,8 @@ int input_cash(int cash)
     std::string line;
     int bet_amount;
     std::cout << "enter bet amount " << "max $" << cash << ":\n";
+
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
     while(getline(std::cin, line)) //getting bet amount as int
     {
@@ -32,6 +35,8 @@ int input_number(int minimum, int maximum)
     std::string line;
     int input;
 
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
     while(getline(std::cin, line)) //getting input as int
     {
         std::stringstream stream_input(line);
@@ -47,4 +52,11 @@ int input_number(int minimum, int maximum)
     }
 
     return input;
+}
+
+void get_enter()
+{
+    std::cout << "\n" << "press enter to continue...\n";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //clears leftover newlines and chars etc. from istream buffer
+    std::cin.get();
 }

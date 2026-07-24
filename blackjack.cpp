@@ -122,16 +122,16 @@ int blackjack(int cash)
     int bet_amount = input_cash(cash);
 
     std::cout << "dealer's face up card: ";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << dealer_faceup << "\n";
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     std::cout << "your cards:\n";
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << players_cards[0] << "\n";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << players_cards[1] << "\n";
 
     std::size_t index_in_players_hand {1};
@@ -159,16 +159,16 @@ int blackjack(int cash)
             card_deck.erase(it);
             cards_in_deck--;
 
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::seconds(2));
             std::cout << "you draw: ";
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            std::this_thread::sleep_for(std::chrono::seconds(2));
             std::cout << players_cards[index_in_players_hand] << "\n";
 
             if(blackjack_hand_calc(players_cards) > 21)
             {
                 std::cout << "bust! " << "dealer's face down card is: " << dealer_facedown << "\n";
                 std::cout << "-$" << bet_amount;
-                std::this_thread::sleep_for(std::chrono::seconds(1));
+                get_enter();
                 return cash - bet_amount;
             }
         }
@@ -182,9 +182,9 @@ int blackjack(int cash)
     int player_score = blackjack_hand_calc(players_cards);
     int dealer_score = blackjack_hand_calc(dealer_cards);
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << "dealer's face down card is: ";
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
     std::cout << dealer_facedown << "\n";
 
     std::size_t index_in_dealers_hand {1};
@@ -202,34 +202,34 @@ int blackjack(int cash)
         card_deck.erase(it);
         cards_in_deck--;
 
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
         std::cout << "dealer draws: ";
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
         std::cout << players_cards[index_in_dealers_hand] << "\n";
 
         dealer_score = blackjack_hand_calc(dealer_cards);
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    std::this_thread::sleep_for(std::chrono::seconds(2));
 
     if(dealer_score < player_score)
     {
         std::cout << "you win!\n";
         std::cout << "+$" << 2*bet_amount;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        get_enter();
         return cash + bet_amount;
     }
     if(dealer_score > player_score)
     {
         std::cout << "you lose!\n";
         std::cout << "-$" << bet_amount;
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        get_enter();
         return cash - bet_amount;
     }
     else
     {
         std::cout << "you draw!";
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        get_enter();
         return cash;
     }
 }

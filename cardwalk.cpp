@@ -39,6 +39,8 @@ int card_walk(int cash)
     int random_card = random_index_shuffle(mt);
 
     std::cout << "CARDWALK\n";
+    std::cout << "you will have to guess if the card is red or black 3 times in a row\n";
+    std::cout << "payout is 6 to 1\n";
 
     int bet_amount = input_cash(cash);
 
@@ -63,15 +65,17 @@ int card_walk(int cash)
         card_deck.erase(it);
 
         std::cout << "you draw:\n";
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(2));
         std::cout << *it << "\n";
+
+        std::this_thread::sleep_for(std::chrono::seconds(2));
 
         if(choice == red_or_black(*it)) std::cout << "correct!\n";
         else
         {
             std::cout << "you lose!\n";
             std::cout << "-$" << bet_amount;
-            std::this_thread::sleep_for(std::chrono::seconds(1));
+            get_enter();
             return cash - bet_amount;
         }
         no_of_cards--;
@@ -80,7 +84,7 @@ int card_walk(int cash)
 
     std::cout << "you win!";
     std::cout << "+$" << bet_amount * 7;
-    std::this_thread::sleep_for(std::chrono::seconds(1));
+    get_enter();
     return cash + bet_amount * 6;
 
 }
