@@ -7,5 +7,6 @@
 
 int blackjack_hand_calc(std::vector<std::string>& cards);
 int blackjack(int cash);
+int hand_evaluation(std::array<std::string,5> &hand);
 
 #endif

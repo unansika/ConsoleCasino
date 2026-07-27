@@ -24,8 +24,8 @@ int blackjack_hand_calc(std::vector<std::string>& cards)
         if(cards[i][0] == 'T' || cards[i][0] == 'J' || cards[i][0] == 'Q' || cards[i][0] == 'K') score += 10;
         else if(cards[i][0] == 'A') ace_counter++;
         else if(cards[i][0] == '9') score += 9;
-        else if(cards[i][0] == '8') score += 8; //im sorry had a smart way but casting was being weird
-        else if(cards[i][0] == '7') score += 7; //might of been using c strings xd, so gotta try old way again
+        else if(cards[i][0] == '8') score += 8; //make better
+        else if(cards[i][0] == '7') score += 7;
         else if(cards[i][0] == '6') score += 6;
         else if(cards[i][0] == '5') score += 5;
         else if(cards[i][0] == '4') score += 4;

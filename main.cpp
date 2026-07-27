@@ -6,6 +6,7 @@
 #include "guessnumber.h"
 #include "cardwalk.h"
 #include "roulette.h"
+#include "videopoker.h"
 #include "inputcasino.h"
 
 int main()
@@ -58,10 +59,10 @@ int main()
         }
 
         std::cout << "cash: $" << cash << "\n";
-        std::cout << "1-blackjack\n" << "2-guess number\n" << "3-card walk\n" << "4-roulette\n" << "5-video poker(under construction)\n" << "6-baccarat(under construction)\n";
+        std::cout << "1-blackjack\n" << "2-guess number\n" << "3-card walk\n" << "4-roulette\n" << "5-video poker\n" << "6-baccarat(under construction)\n";
         std::cout << "7-three card poker(under construction)\n" << "8-slots(under construction)\n" << "9-lottery(under construction)\n" << "0-exit\n";
 
-        int choice = input_number(0,4);
+        int choice = input_number(0,5);
 
         switch(choice)
         {
@@ -80,6 +81,10 @@ int main()
             case 4:
                 std::cout << "\033[2J\033[H";
                 cash = roulette(cash);
+                break;
+            case 5:
+                std::cout << "\033[2J\033[H";
+                cash = vid_poker(cash);
                 break;
             case 0:
                 std::cout << "\033[2J\033[H";
