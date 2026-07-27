@@ -89,18 +89,21 @@
 	<chrono>
 	"roulette.h"
 
-1784806160 source:c:\users\reece\documents\github\consolecasino-\baccarat.cpp
+1785184292 source:c:\users\reece\documents\github\consolecasino-\baccarat.cpp
 	<iostream>
-	<ctime>
-	<cstdlib>
-	<sstream>
 	<string>
 	<vector>
 	<thread>
 	<chrono>
+	<list>
+	<random>
+	<iterator>
 	"baccarat.h"
+	"inputcasino.h"
 
-1784728987 c:\users\reece\documents\github\consolecasino-\baccarat.h
+1785183962 c:\users\reece\documents\github\consolecasino-\baccarat.h
+	<vector>
+	<string>
 
 1785169123 source:c:\users\reece\documents\github\consolecasino-\blackjack.cpp
 	<iostream>
@@ -148,7 +151,7 @@
 
 1784747309 c:\users\reece\documents\github\consolecasino-\guessnumber.h
 
-1785174789 source:c:\users\reece\documents\github\consolecasino-\main.cpp
+1785184314 source:c:\users\reece\documents\github\consolecasino-\main.cpp
 	<iostream>
 	<chrono>
 	<thread>
@@ -157,6 +160,7 @@
 	"cardwalk.h"
 	"roulette.h"
 	"videopoker.h"
+	"baccarat.h"
 	"inputcasino.h"
 
 1784828614 c:\users\reece\documents\github\consolecasino-\roulette.h
@@ -174,7 +178,7 @@
 	"roulette.h"
 	"inputcasino.h"
 
-1785174613 source:c:\users\reece\documents\github\consolecasino-\videopoker.cpp
+1785180880 source:c:\users\reece\documents\github\consolecasino-\videopoker.cpp
 	<iostream>
 	<vector>
 	<thread>

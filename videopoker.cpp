@@ -134,16 +134,16 @@ int hand_evaluation(std::array<std::string,5> &hand)
 
     if(is_straight && is_flush)
     {
-        if(hand_structure[13] == 1 && hand_structure[12] == 1) return 301;
-        else return 51;
+        if(hand_structure[13] == 1 && hand_structure[12] == 1) return 250;
+        else return 50;
     }
     else if(is_straight)
     {
-        return 5;
+        return 4;
     }
     else if(is_flush)
     {
-        return 7;
+        return 6;
     }
 
     int pair_count {};
@@ -155,27 +155,27 @@ int hand_evaluation(std::array<std::string,5> &hand)
         if(hand_structure[i] == 0) continue;
         if(hand_structure[i] == 4)
         {
-            return 26;
+            return 25;
         }
         else if(hand_structure[i] == 3)
         {
             if(pair_count == 1)
             {
-                return 10;
+                return 9;
             }
             else is_3_of_kind = true;
         }
         else if(hand_structure[i] == 2)
         {
             pair_count++;
-            if(pair_count == 2) return 3;
-            else if(is_3_of_kind) return 10;
+            if(pair_count == 2) return 2;
+            else if(is_3_of_kind) return 9;
             else if(i > 9) pair_jack_up_count++;
         }
     }
 
-    if(is_3_of_kind) return 4;
-    else if(pair_jack_up_count == 1) return 2;
+    if(is_3_of_kind) return 3;
+    else if(pair_jack_up_count == 1) return 1;
     else return 0;
 }
 
@@ -185,23 +185,23 @@ std::string hand_name(int multiplier)
     {
         case 0:
             return "nothing";
-        case 2:
+        case 1:
             return "pair";
-        case 3:
+        case 2:
             return "2 pair";
-        case 4:
+        case 3:
             return "3 of a kind";
-        case 5:
+        case 4:
             return "straight";
-        case 7:
+        case 6:
             return "flush";
-        case 10:
+        case 9:
             return "full house";
-        case 26:
+        case 25:
             return "four of a kind";
         case 50:
             return "straight flush";
-        case 251:
+        case 250:
             return "royal flush";
         default:
             return "error";
