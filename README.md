@@ -1,6 +1,6 @@
 # ConsoleCasino
 
-A terminal casino written in C++17. Start with $100, reach $1,600 to "pay rent" before you go broke. Six games share one cash balance, so a bad run at roulette carries over to blackjack.
+A terminal casino written in C++17. Start with $100, reach $1,600 to pay rent before you go broke. Six games share one cash balance, so a bad run at roulette carries over to blackjack.
 
 Built as a practice project for modern C++ (standard library containers, `<random>`, header/source separation) and for implementing real game rules and payout tables correctly.
 
